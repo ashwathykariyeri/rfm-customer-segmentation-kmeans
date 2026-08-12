@@ -39,5 +39,34 @@ https://archive.ics.uci.edu/dataset/352/online+retail
 - Scikit-learn
 - Jupyter Notebook / Google Colab
 
-## Project Status
-Project 1 proposal stage completed. Full implementation will be added in the next phase.
+## Files
+- `pipeline.py` — reusable data-cleaning, RFM engineering, scaling, K-Means,
+  and evaluation functions (no notebook cells).
+- `streamlit_app.py` — the interactive dashboard (3 tabs: Model Selection,
+  Segment Profiles, Customer Explorer).
+- `requirements.txt` — Python dependencies.
+- `sample_online_retail.csv` — a synthetic, schema-matched demo dataset
+  (800 customers, ~26.7k transaction rows) so you can try the dashboard
+  immediately without needing the original Online Retail export.
+
+## Run locally
+```bash
+pip install -r requirements.txt
+streamlit run streamlit_app.py
+```
+Then open the local URL Streamlit prints (usually http://localhost:8501).
+Tick "Use bundled sample dataset" in the sidebar to try it instantly, or
+upload your own transaction CSV with columns:
+`InvoiceNo, StockCode, Description, Quantity, InvoiceDate, UnitPrice, CustomerID, Country`.
+
+## Deploy for free
+1. Push this folder to a GitHub repository.
+2. Go to share.streamlit.io, sign in, and point it at the repo /
+   `streamlit_app.py`.
+3. It redeploys automatically on every push — no server management.
+
+## Notes
+- To use your team's real, cleaned Online Retail data, just upload that CSV
+  instead of the bundled sample — the pipeline works identically.
+- `pipeline.py` functions are independently testable/importable, e.g.:
+  `from pipeline import run_full_pipeline`.
